@@ -10,23 +10,14 @@ public class GetFile
 
         foreach (var file in Directory.GetFiles(path))
         {
-            FileInfo Finfo = new FileInfo(file);
-            String nameVal = Finfo.Name;
-            String extensionVal = Finfo.Extension;
-            String mimeTypeVal = GetMimeType(extensionVal);
-            String currentPath = Finfo.DirectoryName;
-            list.Add(new Payload(nameVal,new(), extensionVal, mimeTypeVal, currentPath));
-            Console.WriteLine(path);
+            FileInfo fInfo = new FileInfo(file);
+            list.Add(new Payload(fInfo.Name, new(), fInfo.Extension, GetMimeType(fInfo.Extension), fInfo.DirectoryName));
         }
         
         foreach (var file in Directory.GetDirectories(path))
         {
             FileInfo fInfo = new FileInfo(file);
-            String nameVal = fInfo.Name;
-            String currentPath = fInfo.FullName;
-            String extensionVal = "N/A";
-            String mimeTypeVal = "Folder";
-            list.Add(new Payload(nameVal, GetFileDirs(currentPath), extensionVal, mimeTypeVal, currentPath));
+            list.Add(new Payload(fInfo.Name, GetFileDirs(fInfo.FullName), "N/A", "Folder", fInfo.FullName));
         }
         return list;
     }
