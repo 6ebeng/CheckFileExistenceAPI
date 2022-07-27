@@ -1,6 +1,4 @@
-﻿using CheckFileExistenceAPI.Controllers;
-
-namespace CheckFileExistenceAPI.Models.Objects
+﻿namespace CheckFileExistenceAPI.Models.Objects
 {
     public class Payload
     {
