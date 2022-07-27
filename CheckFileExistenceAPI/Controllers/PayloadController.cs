@@ -41,7 +41,7 @@ namespace CheckFileExistenceAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                Models.Data.PayloadToDirs.CreateAllDirs(payloadList);
+                PayloadToDirs.CreateAllDirs(payloadList);
                 return Ok("Successfully all dirs were created");
             }
             else

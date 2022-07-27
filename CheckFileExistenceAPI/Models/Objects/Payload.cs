@@ -4,6 +4,11 @@ namespace CheckFileExistenceAPI.Models.Objects
 {
     public class Payload
     {
+        private string nameVal;
+        private string extensionVal;
+        private string mimeTypeVal;
+        private string? currentPath;
+
         public String name { get; set; }
         public List<Payload>? dirs { get; set; }
         public String extension { get; set; }
@@ -17,6 +22,14 @@ namespace CheckFileExistenceAPI.Models.Objects
             this.extension = extension;
             this.mimeType = mimeType;
             this.path = currentPath;
+        }
+
+        public Payload(string nameVal, string extensionVal, string mimeTypeVal, string? currentPath)
+        {
+            this.nameVal = nameVal;
+            this.extensionVal = extensionVal;
+            this.mimeTypeVal = mimeTypeVal;
+            this.currentPath = currentPath;
         }
     }
     

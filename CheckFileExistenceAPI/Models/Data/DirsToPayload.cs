@@ -15,7 +15,7 @@ public class GetFile
             String extensionVal = Finfo.Extension;
             String mimeTypeVal = GetMimeType(extensionVal);
             String currentPath = Finfo.DirectoryName;
-            list.Add(new Payload(nameVal, new(), extensionVal, mimeTypeVal, currentPath));
+            list.Add(new Payload(nameVal, extensionVal, mimeTypeVal, currentPath));
             Console.WriteLine(path);
         }
         
