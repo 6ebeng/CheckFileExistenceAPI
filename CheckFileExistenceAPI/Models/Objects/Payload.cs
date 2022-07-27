@@ -8,7 +8,7 @@ namespace CheckFileExistenceAPI.Models.Objects
         public List<Payload>? dirs { get; set; }
         public String extension { get; set; }
         public String mimeType { get; set; }
-        public String currentPath { get; set; }
+        public String path { get; set; }
 
         public Payload(string name, List<Payload>? dirs, string extension, string mimeType, string currentPath)
         {
@@ -16,7 +16,7 @@ namespace CheckFileExistenceAPI.Models.Objects
             this.dirs = dirs;
             this.extension = extension;
             this.mimeType = mimeType;
-            this.currentPath = currentPath;
+            this.path = currentPath;
         }
     }
     

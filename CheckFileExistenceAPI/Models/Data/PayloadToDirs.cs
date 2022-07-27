@@ -10,12 +10,12 @@ namespace CheckFileExistenceAPI.Models.Data
             {
                 if (dir.mimeType.ToLower() == "folder")
                 {
-                    Directory.CreateDirectory(System.IO.Path.Combine(dir.currentPath, dir.name));
+                    Directory.CreateDirectory(System.IO.Path.Combine(dir.path, dir.name));
                     CreateAllDirs(dir.dirs);
                 }
                 else
                 {
-                    File.Create(System.IO.Path.Combine(dir.currentPath, dir.name));
+                    File.Create(System.IO.Path.Combine(dir.path, dir.name));
                 }
             }
         }
