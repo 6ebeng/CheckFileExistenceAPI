@@ -4,11 +4,6 @@ namespace CheckFileExistenceAPI.Models.Objects
 {
     public class Payload
     {
-        private string nameVal;
-        private string extensionVal;
-        private string mimeTypeVal;
-        private string currentPath;
-
         public String name { get; set; }
         public List<Payload>? dirs { get; set; }
         public String extension { get; set; }
