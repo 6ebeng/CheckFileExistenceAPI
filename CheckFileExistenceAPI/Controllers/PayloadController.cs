@@ -33,7 +33,7 @@ namespace CheckFileExistenceAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    public class WriteDirs : ControllerBase
+    public class CreateDirs : ControllerBase
     {
         [Route("setdirs")]
         [HttpPost]
