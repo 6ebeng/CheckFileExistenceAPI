@@ -27,7 +27,6 @@ public class GetFile
             String extensionVal = "N/A";
             String mimeTypeVal = "Folder";
             list.Add(new Payload(nameVal, GetFileDirs(currentPath), extensionVal, mimeTypeVal, currentPath));
-            Console.WriteLine("hey");
         }
         return list;
     }
