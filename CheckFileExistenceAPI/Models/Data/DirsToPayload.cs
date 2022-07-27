@@ -4,56 +4,35 @@ namespace CheckFileExistenceAPI.Models.Data;
 
 public class GetFile
 {
-
-    public static List<FileFolder> GetFileDirs(String path)
+    public static List<Payload> GetFileDirs(string path)
     {
-        List<FileFolder> list = new();
-        //string path = "C:\\Web";
+        List<Payload> list = new();
 
-        foreach (var file in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
+        foreach (var file in Directory.GetFiles(path))
         {
-
             FileInfo Finfo = new FileInfo(file);
             String nameVal = Finfo.Name;
-            String extensionVal;
-            String mimeTypeVal;
-
-            if (CheckisDir(Finfo.DirectoryName)){
-                extensionVal = "N/A";
-                mimeTypeVal = "Folder";
-            } else
-            {
-                extensionVal = Finfo.Extension;
-                mimeTypeVal = GetMimeType(extensionVal);
-
-            }
-
-
-            list.Add(new FileFolder()
-            {
-                name = nameVal,
-                extention = extensionVal,
-                mimeType = mimeTypeVal
-            });
-
-
+            String extensionVal = Finfo.Extension;
+            String mimeTypeVal = GetMimeType(extensionVal);
+            String currentPath = Finfo.DirectoryName;
+            list.Add(new Payload(nameVal, new(), extensionVal, mimeTypeVal, currentPath));
+            Console.WriteLine(path);
+        }
+        
+        foreach (var file in Directory.GetDirectories(path))
+        {
+            FileInfo fInfo = new FileInfo(file);
+            String nameVal = fInfo.Name;
+            String currentPath = fInfo.FullName;
+            String extensionVal = "N/A";
+            String mimeTypeVal = "Folder";
+            list.Add(new Payload(nameVal, GetFileDirs(currentPath), extensionVal, mimeTypeVal, currentPath));
+            Console.WriteLine("hey");
         }
         return list;
     }
 
-    public static bool CheckisDir(string path)
-    {
-        FileAttributes attr = File.GetAttributes(@""+ path+"");
-
-        //detect whether its a directory or file
-        if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-            return true; // is folder
-        else
-            return false; // is file
-    }
-
     private static IDictionary<string, string> _mappings = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase) {
-
     #region Big freaking list of mime types
     {".323", "text/h323"},
     {".3g2", "video/3gpp2"},
@@ -616,13 +595,12 @@ public class GetFile
     {".z", "application/x-compress"},
     {".zip", "application/x-zip-compressed"},
     #endregion
-    
     };
 
     public static string GetMimeType(string extension)
     {
-       
-        if (extension == null)
+
+        if (extension == String.Empty)
         {
             return "N/A";
         }
